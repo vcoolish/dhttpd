@@ -19,7 +19,7 @@ Future<void> main(List<String> args) async {
     return;
   }
 
-  final herokuPort = int.tryParse(Platform.environment['PORT']);
+  final herokuPort = int.tryParse(Platform.environment['PORT'] ?? '8080');
   
   await Dhttpd.start(
     path: options.path,
