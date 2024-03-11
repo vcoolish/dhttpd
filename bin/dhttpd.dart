@@ -19,15 +19,18 @@ Future<void> main(List<String> args) async {
     return;
   }
 
+  final herokuPort = int.tryParse(Platform.environment['PORT']);
+  
   await Dhttpd.start(
     path: options.path,
-    port: options.port,
+    port: herokuPort ?? 8080,
     headers:
         options.headers != null ? _parseKeyValuePairs(options.headers!) : null,
     address: options.host,
   );
 
-  print('Server started on port ${options.port}');
+  
+  print('Server started on port ${herokuPort ?? 8080}');
 }
 
 Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
